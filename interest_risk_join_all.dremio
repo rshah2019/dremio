@@ -1,0 +1,5 @@
+SELECT positions.PositionId, instruments.ProductId,AssetClass, Sector, Industry, ProductType, Currency, Maturity, Isin, Symbol, Issuer, books.BookId, Manager,BusinessUnit,Strategy,Region,CounterpartyId, CounterpartyCode, CounterpartyFullName, Quantity,Exposure, InterestRate0Pct, InterestRate1Pct,InterestRate2Pct,InterestRate3Pct, InterestRate4Pct,InterestRate5Pct
+FROM "positions_eod.parquet" positions join "instruments_eod.parquet" instruments ON positions.ProductId = instruments.ProductId
+join "counterparties_eod.parquet" cp ON positions.CounterpartyId = cp.PartyId
+join "books_eod.parquet" books ON positions.BookId = books.BookId
+join "rate_risk_eod.parquet" rates ON positions.PositionId = rates.PositionId
